@@ -1,19 +1,17 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
-WORKDIR /src
-
-COPY . .
-
-RUN dotnet restore
-
-RUN dotnet publish -c Release -o /app/publish
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM node:22 AS build
 
 WORKDIR /app
 
-COPY --from=build /app/publish .
+COPY package*.json ./
 
-EXPOSE 8080
+RUN npm install
 
-ENTRYPOINT ["dotnet", "todo-backend.dll"]
+COPY . .
+
+RUN npm run build
+
+FROM nginx:alpine
+
+COPY --from=build /app/dist/todo-frontend/browser /usr/share/nginx/html
+
+EXPOSE 80
