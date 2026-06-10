@@ -19,7 +19,7 @@ export class Dashboard implements OnInit {
   todos: any[] = [];
   newTodo = '';
 
-  apiUrl = 'http://localhost:5171/api/Todo';
+  apiUrl = 'http://localhost:5001/api/Todo';
 
   constructor(
     private http: HttpClient,
