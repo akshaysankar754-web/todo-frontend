@@ -1,0 +1,66 @@
+<div class="container">
+
+  <div class="card">
+
+    <div class="header">
+      <h1>My Todo List</h1>
+
+      <button
+        class="logout-btn"
+        (click)="logout()">
+        Logout
+      </button>
+    </div>
+
+    <div class="input-group">
+
+      <input
+        type="text"
+        placeholder="What needs to be done?"
+        [(ngModel)]="newTodo">
+
+      <button (click)="addTodo()">
+        Add
+      </button>
+
+    </div>
+
+    <ul>
+
+      <li *ngFor="let todo of todos">
+
+        <div class="left-section">
+
+          <input
+            type="checkbox"
+            [checked]="todo.isCompleted"
+            (change)="toggleTodo(todo.id)">
+
+          <span
+            [class.completed]="todo.isCompleted">
+            {{ todo.title }}
+          </span>
+
+        </div>
+
+        <button
+          class="delete-btn"
+          (click)="deleteTodo(todo.id)">
+          Delete
+        </button>
+
+      </li>
+
+    </ul>
+
+    <div
+      *ngIf="todos.length === 0"
+      class="empty-message">
+
+      No tasks yet. Add your first task 🚀
+
+    </div>
+
+  </div>
+
+</div>

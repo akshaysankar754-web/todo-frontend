@@ -1,0 +1,39 @@
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h1>Create Account</h1>
+
+    <form (ngSubmit)="register()">
+
+      <input
+        type="text"
+        placeholder="Name"
+        [(ngModel)]="name"
+        name="name">
+
+      <input
+        type="email"
+        placeholder="Email"
+        [(ngModel)]="email"
+        name="email">
+
+      <input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        name="password">
+
+      <button type="submit">
+        Register
+      </button>
+
+    </form>
+
+    <a routerLink="/" class="register-link">
+      Back To Login
+    </a>
+
+  </div>
+
+</div>
